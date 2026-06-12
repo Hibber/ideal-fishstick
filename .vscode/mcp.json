@@ -1,0 +1,26 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "ha-url",
+      "description": "Home Assistant URL",
+      "default": "http://homeassistant.local:8123"
+    },
+    {
+      "type": "promptString",
+      "id": "ha-token",
+      "description": "Home Assistant Long-Lived Access Token",
+      "password": true
+    }
+  ],
+  "servers": {
+    "home-assistant": {
+      "command": "uvx",
+      "args": ["ha-mcp@latest"],
+      "env": {
+        "HOMEASSISTANT_URL": "${input:ha-url}",
+        "HOMEASSISTANT_TOKEN": "${input:ha-token}"
+      }
+    }
+  }
+}
